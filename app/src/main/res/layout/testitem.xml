@@ -8,4 +8,10 @@
         android:layout_height="wrap_content"
         android:text="qweqweqwe"
         android:id="@+id/tv_text"/>
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="qweqweqwe"
+        android:id="@+id/tv_text1"/>
 </LinearLayout>
