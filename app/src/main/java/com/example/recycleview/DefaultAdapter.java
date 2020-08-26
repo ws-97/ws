@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class DefaultAdapter extends RecyclerView.Adapter<DefaultAdapter.MyViewHo
     private List<String> mList;
     private Context mContext;
 
+    private List<Integer> mHeight=new ArrayList<>();
     public DefaultAdapter(Context context,List<String> list) {
         this.mContext=context;
         this.mList=list;
@@ -35,6 +37,10 @@ public class DefaultAdapter extends RecyclerView.Adapter<DefaultAdapter.MyViewHo
         MyViewHolder holder=new MyViewHolder(LayoutInflater.from(mContext)
         .inflate(R.layout.testitem,parent,false));
 
+
+        for(int i=0;i<mList.size();i++){
+            mHeight.add((int)(100+Math.random()*300));
+        }
         return holder;
     }
 
@@ -42,6 +48,9 @@ public class DefaultAdapter extends RecyclerView.Adapter<DefaultAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        ViewGroup.LayoutParams layoutParams=holder.textView.getLayoutParams();
+        layoutParams.height=mHeight.get(position);
+        holder.textView.setLayoutParams(layoutParams);
         holder.textView.setText(mList.get(position));
     }
 
