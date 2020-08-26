@@ -1,6 +1,7 @@
 package com.example.recycleview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,12 +22,13 @@ public class MainActivity extends AppCompatActivity {
     public void initView(){
         rvtest=findViewById(R.id.rv_test);
 
-        //创建布局管理
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        rvtest.setLayoutManager(layoutManager);
-        TestAdapter testAdapter=new TestAdapter(R.layout.testitem, Arrays.asList("1","2","3"));//传入布局和数据源
-        rvtest.setAdapter(testAdapter);
+        //设置布局管理
+        rvtest.setLayoutManager(new LinearLayoutManager(this));
+        //设置item增加和删除时的动画
+        rvtest.setItemAnimator(new DefaultItemAnimator());
+//        TestAdapter testAdapter=new TestAdapter(R.layout.testitem, Arrays.asList("1","2","3"));//传入布局和数据源
+        DefaultAdapter defaultAdapter=new DefaultAdapter(this, Arrays.asList("1","2","3"));
+        rvtest.setAdapter(defaultAdapter);
     }
 
 
